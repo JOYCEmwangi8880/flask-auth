@@ -12,11 +12,13 @@ load_dotenv()
 
 app = Flask(__name__)
 # db = SQLAlchemy(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SECRET_KEY'] = 'your_secret_key'
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:password@localhost/flask_auth'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Joyce%40123@localhost:3306/flask_auth'
 # app.config['SECRET_KEY'] = 'your_secret_key'
 db = SQLAlchemy(app)
+
+
 bcrypt = Bcrypt(app)
 
 
@@ -124,4 +126,6 @@ def register():
 
 
 if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)
